@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no_pengeluaran');
             $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->constrained();
             $table->bigInteger('nominal');
             $table->text('deskripsi');
-            $table->dateTime('tanggal_pengeluarans');
+            $table->dateTime('tanggal_pengeluaran');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->constrained();
             $table->timestamps();
         });
     }

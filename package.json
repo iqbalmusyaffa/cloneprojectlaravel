@@ -14,6 +14,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@eonasdan/tempus-dominus": "^6.7.11",
         "bootstrap-icons": "^1.10.5",
         "datatables.net-bs5": "^1.13.5",
         "datatables.net-buttons-bs5": "^2.4.1"

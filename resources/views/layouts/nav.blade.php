@@ -1,7 +1,7 @@
 @php
     $currentRouteName = Route::currentRouteName();
 @endphp
-
+<body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-secondary">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="{{ route('home') }}">Diary Uang</a>
@@ -12,7 +12,7 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
-            {{-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> {{ Auth::user()->name }}</a> --}}
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> {{ Auth::user()->name }}</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
@@ -36,7 +36,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading text-white">Dashboard</div>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ route('home') }}">
                         <div class="sb-nav-link-icon text-white"><i class="fas fa-tachometer-alt"></i></div><div class="text-white">
                             Dashboard
                         </div>
@@ -56,12 +56,12 @@
                     </div>
                     @elseif(auth()->check() && auth()->user()->role === 'User')
                     @endif
-                    <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <a class="nav-link active collapsed @if($currentRouteName == 'pemasukan.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Manajemen pemasukan
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pemasukan.index') }}" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
+                    <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pengeluaran.index') }}" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Manajemen pengeluaran
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -72,7 +72,7 @@
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     @if(auth()->check() && auth()->user()->role === 'Admin')
-                    <a class="nav-link active collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <a class="nav-link active collapsed @if($currentRouteName == 'kategori.index') active @endif" href="{{ route('kategori.index') }}"  aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Manajemen Kategori
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

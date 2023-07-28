@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Kategori;
+use App\Models\Pemasukan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PemasukanController extends Controller
 {
@@ -11,9 +15,12 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Create Pemasukan';
-
-        return view('pemasukan.index');
+        $pageTitle = 'halaman kategori';
+        $pemasukan = Pemasukan::all();
+        return view('pemasukan.index', [
+            'pageTitle' => $pageTitle,
+            'pemasukan' => $pemasukan
+        ]);
     }
 
     /**
@@ -21,9 +28,14 @@ class PemasukanController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Create Pemasukan';
+        $pageTitle = 'Create Kategori';
+        $pemasukans = Kategori::all();
 
-         return view('pemasukan.create', compact('pageTitle'));
+        // return view('pemasukan.create', compact('pageTitle','pemasukan'));
+        return view ('pemasukan.create',[
+            'pageTitle'=>$pageTitle,
+            'pemasukans'=>$pemasukans
+        ]);
     }
 
     /**
@@ -38,18 +50,24 @@ class PemasukanController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required|email',
-            'age' => 'required|numeric',
+            'nominal' => 'required',
+            'deskripsi' => 'required'
         ], $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        return $request->all();
+        // ELOQUENT
+        $pemasukans = New Pemasukan();
+        $pemasukans->kategori_id = $request->kategori_id;
+        $pemasukans->nominal = $request->nominal;
+        $pemasukans->deskripsi = $request->deskripsi;
+        $pemasukans->tanggal_pemasukan = $request->tanggal_pemasukan;
+        $pemasukans->user_id=Auth::id();
+        $pemasukans->save();
 
+        return redirect()->route('pemasukan.index');
     }
 
     /**

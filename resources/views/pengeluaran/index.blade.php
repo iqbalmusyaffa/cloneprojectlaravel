@@ -38,7 +38,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading text-white">Dashboard</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{ route('home') }}">
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-tachometer-alt"></i></div><div class="text-white">
                                 Dashboard
                             </div>
@@ -58,12 +58,12 @@
                         </div>
                         @elseif(auth()->check() && auth()->user()->role === 'User')
                         @endif
-                        <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link active collapsed @if($currentRouteName == 'pemasukan.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Manajemen pemasukan
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pemasukan.index') }}" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link active collapsed @if($currentRouteName == 'pengeluaran.index') active @endif" href="{{ route('pengeluaran.index') }}" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Manajemen pengeluaran
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -100,10 +100,15 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Pemasukan</h1>
+                    <h1 class="mt-4">Pengeluaran</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Pemasukan</li>
+                        <li class="breadcrumb-item active">Pengeluaran</li>
                     </ol>
+                    <div class="col-lg-3 col-xl-2">
+                        <div class="d-grid gap-2">
+                            <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary">Create Pengeluaran</a>
+                        </div>
+                    </div>
                     </div>
                     <div class="table-responsive border p-3 rounded-3">
                         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
@@ -111,14 +116,40 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kategori</th>
-                                    <th>Nominal</th>
+                                    <th>nominal</th>
                                     <th>deskripsi</th>
-                                    <th></th>
+                                    <th>tgl pemasukan</th>
+                                    <th>username</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach ($pengeluaran as $pengeluarans)
+                                <tr>
+                                    <td>{{ $pengeluarans->id }}</td>
+                                    <td>{{ $pengeluarans->kategori->nama_kategori }}</td>
+                                    <td>{{ $pengeluarans->nominal	}}</td>
+                                    <td>{{ $pengeluarans->deskripsi }}</td>
+                                    <td>{{ $pengeluarans->tanggal_pengeluaran }}</td>
+                                    <td>{{ $pengeluarans->user->name }}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ route('pengeluaran.show', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
+                                                me-2"><i class="bi-person-lines-fill" method="POST"></i></a>
+                                                <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
+                                                    me-2"><i class="bi-pencil-square"></i></a>
+                                            </div>
+                                            <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
+                                            <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                     </div>
-
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

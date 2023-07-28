@@ -18,5 +18,12 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+    const datetimepicker1 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker'), {
+        localization: {
+          locale: 'pt-BR',
+          format: 'dd/MM/yyyy HH:mm',
+        }
+      });
+
 
 });

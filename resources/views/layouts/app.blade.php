@@ -13,17 +13,17 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
       <!-- Styles -->
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
       <!--Custom Scripts and Css-->
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-
+    @vite('resources/sass/app.scss')
     @include('layouts.nav')
     @yield('content')
     @stack('scripts')
+    @vite('resources/js/app.js')
 </body>
 </html>

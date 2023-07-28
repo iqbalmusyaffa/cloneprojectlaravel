@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Pengeluaran;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengeluaranController extends Controller
 {
@@ -11,9 +15,12 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Create Pemasukan';
-
-        return view('pengeluaran.index');
+        $pageTitle = 'halaman pengeluaran';
+        $pengeluaran = Pengeluaran::all();
+        return view('pengeluaran.index', [
+            'pageTitle' => $pageTitle,
+            'pengeluaran' => $pengeluaran
+        ]);
     }
 
     /**
@@ -21,9 +28,14 @@ class PengeluaranController extends Controller
      */
     public function create()
     {
-        // $pageTitle = 'Create Pengeluaran';
+        $pageTitle = 'Create pengeluaran';
+        $pengeluarans = Kategori::all();
 
-        // return view('pengeluaran.create', compact('pageTitle'));
+        // return view('pemasukan.create', compact('pageTitle','pemasukan'));
+        return view ('pengeluaran.create',[
+            'pageTitle'=>$pageTitle,
+            'pengeluaran'=>$pengeluarans
+        ]);
     }
 
     /**
@@ -31,24 +43,31 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        // $messages = [
-        //     'required' => ':Attribute harus diisi.',
-        //     'email' => 'Isi :attribute dengan format yang benar',
-        //     'numeric' => 'Isi :attribute dengan angka'
-        // ];
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+            'email' => 'Isi :attribute dengan format yang benar',
+            'numeric' => 'Isi :attribute dengan angka'
+        ];
 
-        // $validator = Validator::make($request->all(), [
-        //     'firstName' => 'required',
-        //     'lastName' => 'required',
-        //     'email' => 'required|email',
-        //     'age' => 'required|numeric',
-        // ], $messages);
+        $validator = Validator::make($request->all(), [
+            'nominal' => 'required',
+            'deskripsi' => 'required'
+        ], $messages);
 
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-        // return $request->all();
+        // ELOQUENT
+        $pengeluarans = New Pengeluaran();
+        $pengeluarans->kategori_id = $request->kategori_id;
+        $pengeluarans->nominal = $request->nominal;
+        $pengeluarans->deskripsi = $request->deskripsi;
+        $pengeluarans->tanggal_pengeluaran = $request->tanggal_pengeluaran;
+        $pengeluarans->user_id=Auth::id();
+        $pengeluarans->save();
+
+        return redirect()->route('pengeluaran.index');
     }
 
     /**
