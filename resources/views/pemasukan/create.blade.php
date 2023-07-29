@@ -25,37 +25,40 @@
                         @endif
 
                         <div class="mb-3 text-center">
-                            <i class="bi-person-circle fs-1"></i>
+                            <i class="bi bi-graph-up fs-1"></i>
                             <h4>Create Pemasukan</h4>
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="kategori" class="form-label">kategori</label>
+                            <div class="col-md-6 mb-3">
+                                <label for="kategori_id" class="form-label">Kategori</label>
                                 <select name="kategori_id" id="kategori_id" class="form-select">
                                     @foreach ($pemasukans as $kategori)
-                                    <option value="{{ $kategori->id }}" {{ $kategori->id == $kategori->id ?'selected' : '' }}>{{ $kategori->kode_kategori.' -'.$kategori->nama_kategori	}}</option>
+                                        <option value="{{ $kategori->id }}">{{ $kategori->kode_kategori }} - {{ $kategori->nama_kategori }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="nominal" class="form-label">nominal</label>
-                                <input class="form-control" type="number" name="nominal" id="nominal" value="" placeholder="Enter Last Name">
+                                <label for="nominal" class="form-label">Nominal</label>
+                                <input class="form-control" type="number" name="nominal" id="nominal" placeholder="Enter Nominal">
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="floatingTextarea">Deskripsi</label>
-                                <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="deskripsi"></textarea>
+                            <div class="col-md-12 mb-3">
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi"></textarea>
                             </div>
-                            <input type="datetime-local" name="tanggal_pemasukan" id="tanggal_pemasukan">
-
+                            <div class="col-md-12 mb-3">
+                                <label for="tanggal_pemasukan" class="form-label">Tanggal Pemasukan</label>
+                                <input type="datetime-local" name="tanggal_pemasukan" id="tanggal_pemasukan" class="form-control rounded">
+                            </div>
                         </div>
+
                         <hr>
                         <div class="row">
                             <div class="col-md-6 d-grid">
-                                <a href="{{ route('pemasukan.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                                <a href="{{ route('pemasukan.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Batal</a>
                             </div>
                             <div class="col-md-6 d-grid">
-                                <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
+                                <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Simpan</button>
                             </div>
                         </div>
                     </div>

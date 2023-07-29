@@ -2,9 +2,11 @@
     $currentRouteName = Route::currentRouteName();
 @endphp
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-secondary">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #CB3B43;">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="{{ route('home') }}">Diary Uang</a>
+    <a class="navbar-brand ps-3" href="{{ route('home') }}">
+        <img class="img-fluid" src="{{ Vite::asset('resources/image/diaryuangpuih.png') }}" a>
+    </a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-justify" style="font-size: 30px;"></i></i></button>
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -37,7 +39,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading text-white">Dashboard</div>
                     <a class="nav-link" href="{{ route('home') }}">
-                        <div class="sb-nav-link-icon text-white"><i class="fas fa-tachometer-alt"></i></div><div class="text-white">
+                        <div class="sb-nav-link-icon text-white"><i class="bi bi-house-fill"></i></div><div class="text-white">
                             Dashboard
                         </div>
                     </a>
@@ -57,20 +59,16 @@
                     @elseif(auth()->check() && auth()->user()->role === 'User')
                     @endif
                     <a class="nav-link active collapsed @if($currentRouteName == 'pemasukan.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Manajemen pemasukan
+                        <div class="sb-nav-link-icon"><i class="bi bi-box-arrow-in-right"></i></div>
+                        <span class="text-white small">Manajemen Pemasukan</span>
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pengeluaran.index') }}" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Manajemen pengeluaran
+                        <div class="sb-nav-link-icon"><i class="bi bi-box-arrow-left"></i></div>
+                        <span class="text-white small">Manajemen Pengeluaran</span>
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('saldo.index') }}" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Manajemen Saldo
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
+
                     @if(auth()->check() && auth()->user()->role === 'Admin')
                     <a class="nav-link active collapsed @if($currentRouteName == 'kategori.index') active @endif" href="{{ route('kategori.index') }}"  aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -78,20 +76,8 @@
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     @endif
-                    <!-- <div class="sb-sidenav-menu-heading text-white">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
-                </div> -->
+                </div>
             </div>
-            <!-- <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                Start Bootstrap
-            </div> -->
+
         </nav>
     </div>
