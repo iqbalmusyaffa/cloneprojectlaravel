@@ -6,15 +6,11 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Pemasukan</h1>
+                    <h1 class="mt-4">Saldo</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Pemasukan</li>
+                        <li class="breadcrumb-item active">Saldo</li>
                     </ol>
-                    <div class="col-lg-3 col-xl-2">
-                        <div class="d-grid gap-2">
-                            <a href="{{ route('pemasukan.create') }}" class="btn btn-primary">Create Pemasukan</a>
-                        </div>
-                    </div>
+
                     <div class="table-responsive border p-3 rounded-3">
                         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
                             <thead>

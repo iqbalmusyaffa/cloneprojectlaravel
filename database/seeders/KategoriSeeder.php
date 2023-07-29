@@ -16,12 +16,10 @@ class KategoriSeeder extends Seeder
         DB::table('kategoris')->insert([
             [
                 'nama_kategori' => 'Bayar Kos',
-                'kode_kategori'=> 'BK',
                 'deskripsi'=> 'ini bayar kos',
             ],
             [
                 'name' => 'Bayar Listrik',
-                'email'=> 'BL',
                 'deskripsi'=> 'ini bayar listrik',
             ],
         ]);
