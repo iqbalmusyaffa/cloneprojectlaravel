@@ -5,27 +5,26 @@
 @section('content')
         <div id="layoutSidenav_content">
             <main>
+                <br>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Pemasukan</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Pemasukan</li>
-                    </ol>
+                    <br>
                     <div class="col-lg-3 col-xl-2">
                         <div class="d-grid gap-2">
-                            <a href="{{ route('pemasukan.create') }}" class="btn btn-primary">Create Pemasukan</a>
+                            <a href="{{ route('pemasukan.create') }}" class="btn btn-primary rounded-pill" style="background-color: #58B079" >Tambah Pemasukan</a>
                         </div>
                     </div>
-                    <div class="table-responsive border p-3 rounded-3">
+                    <br>
+                    <div class="table-responsive border p-3 rounded-3" style="background-color: #FDDDCB">
                         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>No</th>
                                     <th>Nama Kategori</th>
-                                    <th>nominal</th>
-                                    <th>deskripsi</th>
-                                    <th>tgl pemasukan</th>
-                                    <th>username</th>
-                                    <th>Action</th>
+                                    <th>Nominal</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,7 +39,6 @@
                                     <td>{{ $pemasukans->nominal	}}</td>
                                     <td>{{ $pemasukans->deskripsi }}</td>
                                     <td>{{ $pemasukans->tanggal_pemasukan }}</td>
-                                    <td>{{ $pemasukans->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('pemasukan.show', ['pemasukan'=>$pemasukans->id]) }}" class="btn btn-outline-dark btn-sm
