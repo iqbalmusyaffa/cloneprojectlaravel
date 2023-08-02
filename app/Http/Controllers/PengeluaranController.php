@@ -10,6 +10,7 @@ use App\Models\Saldokeluar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PengeluaranController extends Controller
 {
@@ -177,4 +178,14 @@ class PengeluaranController extends Controller
     return redirect()->route('pengeluaran.index');
 
     }
+
+    public function exportPdf2()
+    {
+        $pengeluaran = Pengeluaran::all();
+
+        $pdf = PDF::loadView('pengeluaran.export_pdf', compact('pengeluaran'));
+
+        return $pdf->download('pengeluaran.pdf');
+    }
+
 }

@@ -14,6 +14,19 @@
                             <a href="{{ route('pemasukan.create') }}" class="btn btn-primary rounded-pill" style="background-color: #58B079" >Tambah Pemasukan</a>
                         </div>
                     </div>
+                    <div class="row mb-0">
+                        <div class="col-lg-9 col-xl-6">
+                        </div>
+                        <div class="col-lg-3 col-xl-6">
+                            <ul class="list-inline mb-0 float-end">
+                                <li class="list-inline-item">
+                                    <a href="{{ route('pemasukan.exportPdf') }}" class="btn btn-outline-danger">
+                                        <i class="bi bi-download me-1"></i> to PDF
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <br>
                     <div class="table-responsive border p-3 rounded-3" style="background-color: #FDDDCB">
                         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">

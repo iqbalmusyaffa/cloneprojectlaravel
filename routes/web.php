@@ -92,3 +92,8 @@ Route::group(['middleware' => 'auth','Admin'], function() {
     Route::resource('kategoripengeluaran', KategoripengeluaranController::class,['except' => 'kategoripengeluaran,index']);
     Route::resource('saldo',SaldoController::class,['except' => 'saldo,index']);
   });
+
+
+Route::get('exportPdf1', [PemasukanController::class, 'exportPdf1'])->name('pemasukan.exportPdf');
+Route::get('exportPdf2', [PengeluaranController::class, 'exportPdf2'])->name('pengeluaran.exportPdf');
+
