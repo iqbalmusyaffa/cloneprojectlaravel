@@ -7,20 +7,20 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+                    <br>
                     <h1 class="mt-4">Pengeluaran</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Pengeluaran</li>
-                    </ol>
+                    <br>
                     <div class="col-lg-3 col-xl-2">
                         <div class="d-grid gap-2">
-                            <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary">Create Pengeluaran</a>
+                            <a href="{{ route('pengeluaran.create') }}" class="btn btn-success">Create Pengeluaran</a>
                         </div>
                     </div>
+                    <br>
                     </div>
-                    <div class="table-responsive border p-3 rounded-3">
+                    <div class="table-responsive border p-3 rounded-3" style="background-color: #FDDDCB">
                         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>No</th>
                                     <th>Nama Kategori</th>
                                     <th>nominal</th>
@@ -44,15 +44,25 @@
                                     <td>{{ $pengeluarans->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
+<<<<<<< HEAD
                                                 <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
                                                     me-2"><i class="bi-pencil-square"></i></a>
                                             </div>
                                             <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
                                             <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
                                             </form>
+=======
+                                        <a href="{{ route('pengeluaran.show', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm me-2">
+                                            <i class="bi bi-card-text" method="POST"></i></a>
+                                            <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm me-2">
+                                                <i class="bi-pencil-square"></i></a>
+>>>>>>> 49a62a15344debe9cf6cfc979ce019fcc8a29536
                                         </div>
+                                        <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm me-2"><i class="bi-trash"></i></button>
+                                        </form>
                                     </div>
-                                    </td>
+                                </td>
                                 </tr>
                                 @php
                                 $counter++;
