@@ -129,7 +129,8 @@
                             </a>
                         </div>
                     </div>
-
+                    <a class="btn btn-outline-dark btn-large btn-with-shadow mb-2" href="#" role="button">Login</a>
+                    <a class="btn btn-outline-success btn-large btn-with-shadow" href="#" role="button">Register</a>
                     <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>

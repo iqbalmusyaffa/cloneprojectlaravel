@@ -110,14 +110,14 @@ class PengeluaranController extends Controller
      */
     public function edit(string $id)
     {
-        $pageTitle = 'Create Kategori';
-        $pengeluarans = Kategorikeluar::find($id);
-        $pemasukan = Saldokeluar::find($id);
+        $pageTitle = 'edit Kategori';
+        $kategorikeluars = Kategorikeluar::all();
+        $pengeluarans = Saldokeluar::find($id);
 
-        return view ('pemasukan.create',[
+        return view ('pengeluaran.edit',[
             'pageTitle'=>$pageTitle,
-            'pemasukans'=>$pengeluarans,
-            'saldomasuks'=>$pemasukan
+            'kategorikeluars'=>$kategorikeluars,
+            'pengeluarans'=>$pengeluarans
         ]);
     }
 
@@ -142,17 +142,17 @@ class PengeluaranController extends Controller
         }
 
         // ELOQUENT
-        $pemasukans = Pengeluaran::find($id);
+        $pengeluarans = Pengeluaran::find($id);
         $saldos = Saldokeluar::find($id);
-        $pemasukans->kategorimasuk_id = $request->kategori_id;
-        $pemasukans->nominal = $request->nominal;
-        $pemasukans->deskripsi = $request->deskripsi;
-        $pemasukans->tanggal_pemasukan = $request->tanggal_pemasukan;
-        $pemasukans->user_id=Auth::id();
+        $pengeluarans->kategorimasuk_id = $request->kategori_id;
+        $pengeluarans->nominal = $request->nominal;
+        $pengeluarans->deskripsi = $request->deskripsi;
+        $pengeluarans->tanggal_pemasukan = $request->tanggal_pemasukan;
+        $pengeluarans->user_id=Auth::id();
         $saldos->user_id=Auth::id();
-        $pemasukans->save();
+        $pengeluarans->save();
 
-        $pemasukanId = $pemasukans->id;
+        $pemasukanId = $pengeluarans->id;
         $saldomasuk = Saldokeluar::find($id);
         $saldomasuk->user_id = Auth::id();
         $saldomasuk->totalmasuk= $request->nominal;

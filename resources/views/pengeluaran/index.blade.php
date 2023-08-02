@@ -44,8 +44,6 @@
                                     <td>{{ $pengeluarans->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('pengeluaran.show', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
-                                                me-2"><i class="bi-person-lines-fill" method="POST"></i></a>
                                                 <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
                                                     me-2"><i class="bi-pencil-square"></i></a>
                                             </div>
