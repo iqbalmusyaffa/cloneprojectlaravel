@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemasukan;
 use App\Models\Saldomasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +37,10 @@ class HomeController extends Controller
             // var_dump($id);die;
             return view('dashboard', ['data' => $data]);
         }elseif ($role=="User"){
+            $pemasukans = Pemasukan::where('id')->first();
             $saldomasuks = Saldomasuk::where('user_id',$id)->get();
             $totalpemasukan = $saldomasuks->sum('totalmasuk');
-            return view('dashboard', ['data' => $data, 'saldomasuks' => $totalpemasukan]);
+            return view('dashboard', ['data' => $data, 'saldomasuks' => $totalpemasukan ,'pemasukans' =>$pemasukans]);
         }
     }
 }

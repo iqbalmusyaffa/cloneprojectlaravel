@@ -31,8 +31,8 @@
         </ul>
     </nav>
     <div class="container-sm mt-5">
-        <form action="{{ route('pengeluaran.update',['pengeluaran' => $pengeluarans->id]) }}" method="POST">
-            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluarans->pengeluaran_id }}">
+        <form action="{{ route('pengeluaran.update',['pengeluaran' => $pengeluarans->id??'None']) }}" method="POST">
+            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluarans->pengeluaran_id??'None' }}">
             @method('put')
             @csrf
             <div class="row justify-content-center">
@@ -56,26 +56,28 @@
                         <div class="col-md-12 mb-3">
                             <label for="kategori" class="form-label">kategori</label>
                             <select name="kategori_id" id="kategori_id" class="form-select">
-                                @foreach ($pengeluarans as $kategori)
-                                <option value="{{ $pengeluarans->id }}" {{ $pengeluarans->id == $pengeluarans->id ?'selected' : '' }}>{{ $pengeluarans->kode_kategori.' -'.$pengeluarans->nama_kategori	}}</option>
-                                @endforeach
-                            </select>
+                            @foreach ($kategorikeluars as $tes)
+                            <option value="{{ $tes->id }}" {{ $tes->kategori_id == $tes->id ? 'selected' : '' }}>
+                                {{ $tes->kode_kategori . ' - ' . $tes->nama_kategori }}
+                            </option>
+                        </select>
+                        @endforeach
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="nominal" class="form-label">nominal</label>
-                            <input class="form-control" type="number" name="nominal" id="nominal" value="{{ $errors->any() ? old('nominal') : $pengeluarans->kode_kategori }}" placeholder="Enter Last Name">
+                            <input class="form-control" type="number" name="nominal" id="nominal" value="{{ $errors->any() ? old('nominal') : $pengeluarans->nominal??'None' }}" placeholder="Enter Last Name">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="floatingTextarea">Deskripsi</label>
-                            <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="deskripsi"></textarea>
+                            <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="deskripsi">{{ $pengeluarans->deskripsi??'None' }}</textarea>
                         </div>
-                        <input type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran">
+                        <input type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran" value="{{ $pengeluarans->tanggal_pemasukan??'None' }}">
 
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">
-                            <a href="{{ route('databarangs.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                            <a href="{{ route('pengeluaran.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                         </div>
                         <div class="col-md-6 d-grid">
                             <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>

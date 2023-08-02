@@ -33,6 +33,7 @@ Route::resource('saldo', SaldoController::class)->middleware('role:Admin');
 Route::resource('pemasukan', PemasukanController::class)->middleware('role:Admin');
 // Route::resource('kategoripemasukan', KategoripemasukanController::class)->middleware('role:Admin');
 Route::resource('pengeluaran', PengeluaranController::class)->middleware('role:Admin');
+
 // Route::middleware(['auth', 'role:admin'])->group(function () {
 
 //     Route::resource('pemasukan', PemasukanController::class,)->middleware(['auth', 'role:admin']);
@@ -79,7 +80,7 @@ Route::group(['middleware' => 'auth','Admin'], function() {
     Route::resource('kategoripengeluaran', KategoripengeluaranController::class);
     Route::resource('saldo',SaldoController::class,['except' => 'saldo,index']);
 
-
+    Route::get('getPemasukan', [PemasukanController::class, 'getData'])->name('pemasukan.getData');
 
 
 

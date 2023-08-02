@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kategorimasuk extends Model
 {
-       public function pemasukan()
+    public function pemasukan()
     {
         return $this->hasMany(Pemasukan::class);
+    }
+    public function kategorimasuk()
+    {
+        return $this->hasMany(Kategorimasuk::class);
     }
     public function saldokeluar()
     {

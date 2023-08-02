@@ -25,7 +25,7 @@ class PemasukanController extends Controller
         $pemasukans = Pemasukan::all();
         return view('pemasukan.index', [
             'pageTitle' => $pageTitle,
-            'pemasukan' => $pemasukans
+            'pemasukans' => $pemasukans
         ]);
     }
 
@@ -106,13 +106,13 @@ class PemasukanController extends Controller
     public function edit(string $id)
     {
         $pageTitle = 'Create Kategori';
-        $pemasukans = Kategorimasuk::find($id);
-        $pemasukan = Saldomasuk::find($id);
+        $kategorimasuks = Kategorimasuk::all();
+        $pemasukans = Saldomasuk::find($id);
 
         return view ('pemasukan.edit',[
             'pageTitle'=>$pageTitle,
-            'pemasukans'=>$pemasukans,
-            'saldomasuks'=>$pemasukan
+            'kategorimasuks'=>$kategorimasuks,
+            'pemasukans'=>$pemasukans
         ]);
     }
 
@@ -137,17 +137,17 @@ class PemasukanController extends Controller
         }
 
         // ELOQUENT
-        $pemasukans = Pemasukan::find($id);
+        $pemasukans  = Pemasukan::find($id);
         $saldos = Saldomasuk::find($id);
-        $pemasukans->kategorimasuk_id = $request->kategori_id;
-        $pemasukans->nominal = $request->nominal;
-        $pemasukans->deskripsi = $request->deskripsi;
-        $pemasukans->tanggal_pemasukan = $request->tanggal_pemasukan;
+        $pemasukans ->kategorimasuk_id = $request->kategori_id;
+        $pemasukans ->nominal = $request->nominal;
+        $pemasukans ->deskripsi = $request->deskripsi;
+        $pemasukans ->tanggal_pemasukan = $request->tanggal_pemasukan;
         $pemasukans->user_id=Auth::id();
         $saldos->user_id=Auth::id();
-        $pemasukans->save();
+        $pemasukans ->save();
 
-        $pemasukanId = $pemasukans->id;
+        $pemasukanId =  $pemasukans->id;
         $saldomasuk = Saldomasuk::find($id);
         $saldomasuk->user_id = Auth::id();
         $saldomasuk->totalmasuk= $request->nominal;

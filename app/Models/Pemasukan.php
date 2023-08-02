@@ -18,7 +18,7 @@ class Pemasukan extends Model
         return $this->belongsTo(Kategorimasuk::class);
     }
     public function pemasukan(){
-        return $this->belongsTo(Pemasukan::class);
+        return $this->hasMany(Pemasukan::class, 'kategorimasuks_id', 'id');
     }
     public function saldomasuk()
     {

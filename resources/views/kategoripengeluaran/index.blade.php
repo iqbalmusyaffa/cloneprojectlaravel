@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="table-responsive border p-3 rounded-3">
-                        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
+                        <table class="table table-bordered table-hover table-striped mb-0 bg-white" id="employeeTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -57,10 +57,10 @@
         </div>
     </div>
     @endsection
-        {{-- @push('scripts')
-        <script type="module">
-            $(document).ready(function() {
-                $('#employeeTable').DataTable();
-            });
-        </script>
-    @endpush --}}
+    @push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+@endpush
