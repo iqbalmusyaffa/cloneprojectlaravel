@@ -12,12 +12,13 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
+                    @if(auth()->check() && auth()->user()->role === 'User')
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">Saldo Anda saat ini</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <div class="text-white">Rp . </div>
+                                    <div class="text-white">Rp .{{ $total }}</div>
                                 </div>
                             </div>
                         </div>
@@ -25,7 +26,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Uang masuk</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <div class="text-white">Rp . </div>
+                                    <div class="text-white">Rp . {{   $saldomasuks }}</div>
                                 </div>
                             </div>
                         </div>
@@ -33,11 +34,14 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">Uang keluar</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <div class="text-white">Rp . </div>
+                                    <div class="text-white">Rp . {{   $saldokeluars }}</div>
                                 </div>
                             </div>
                         </div>
+                        @endif
+
                     </div>
+
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

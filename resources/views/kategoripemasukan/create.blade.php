@@ -33,7 +33,7 @@
 
 
     <div class="container-sm mt-5">
-        <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('kategoripemasukan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 border col-xl-6">
@@ -69,7 +69,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-6 d-grid">
-                                <a href="{{ route('kategori.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                                <a href="{{ route('kategoripemasukan.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                             </div>
                             <div class="col-md-6 d-grid">
                                 <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>

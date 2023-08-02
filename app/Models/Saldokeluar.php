@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengeluaran extends Model
+class Saldokeluar extends Model
 {
     use HasFactory;
-    protected $fillabe = ['kategorikeluar','user','saldokeluar'];
-
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -18,10 +16,6 @@ class Pengeluaran extends Model
     }
     public function kategorikeluar()
     {
-        return $this->belongsTo(Kategorikeluar::class);
-    }
-    public function saldokeluar()
-    {
-        return $this->belongsTo(Saldokeluar::class, 'user_id', 'id');
+        return $this->belongsTo(Kategori::class);
     }
 }

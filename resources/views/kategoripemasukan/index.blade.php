@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -9,7 +10,7 @@
                     </ol>
                     <div class="col-lg-3 col-xl-2">
                         <div class="d-grid gap-2">
-                            <a href="{{ route('kategori.create') }}" class="btn btn-primary">Create Kategori</a>
+                            <a href="{{ route('kategoripemasukan.create') }}" class="btn btn-primary">Create Kategori pemasukan</a>
                         </div>
                     </div>
                     <div class="table-responsive border p-3 rounded-3">
@@ -24,26 +25,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kategori as $kategori)
+                                @php
+                                $counter = 1;
+                            @endphp
+
+                                @foreach ($kategoripemasukan as $kategorimasuks)
                                 <tr>
-                                    <td>{{ $kategori->id }}</td>
-                                    <td>{{ $kategori->nama_kategori }}</td>
-                                    <td>{{ $kategori->kode_kategori	}}</td>
-                                    <td>{{ $kategori->deskripsi }}</td>
+                                    <td>{{ $counter }}</td>
+                                    <td>{{ $kategorimasuks->nama_kategori }}</td>
+                                    <td>{{ $kategorimasuks->kode_kategori	}}</td>
+                                    <td>{{ $kategorimasuks->deskripsi }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('kategori.show', ['kategori'=>$kategori->id]) }}" class="btn btn-outline-dark btn-sm
-                                                me-2"><i class="bi-person-lines-fill" method="POST"></i></a>
-                                                <a href="{{ route('kategori.edit', ['kategori'=>$kategori->id]) }}" class="btn btn-outline-dark btn-sm
-                                                    me-2"><i class="bi-pencil-square"></i></a>
+                                            <a href="{{ route('kategoripemasukan.edit', ['kategoripemasukan'=>$kategorimasuks->id]) }}" class="btn btn-outline-dark btn-sm
+                                                me-2"><i class="bi-pencil-square"></i></a>
+                                        </div>
                                             </div>
-                                            <form action="{{ route('kategori.destroy',['kategori' =>$kategori->id]) }}" method="POST"> @csrf @method('delete')
+                                            <form action="{{ route('kategoripemasukan.destroy',['kategoripemasukan' =>$kategorimasuks->id]) }}" method="POST"> @csrf @method('delete')
                                             <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
                                             </form>
                                         </div>
                                     </div>
                                     </td>
                                 </tr>
+                                @php
+                                $counter++;
+                            @endphp
                                 @endforeach
                                 </tbody>
                             </table>

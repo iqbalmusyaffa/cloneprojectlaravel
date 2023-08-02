@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KategoriController;
+
+use App\Http\Controllers\KategoripemasukanController;
+use App\Http\Controllers\KategoripengeluaranController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\SaldoController;
@@ -25,11 +27,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 // Route::get('dashboardsaldo', SaldoController::class)->name('dashboardsaldo');
 Route::resource('saldo', SaldoController::class)->middleware('role:Admin');
 Route::resource('pemasukan', PemasukanController::class)->middleware('role:Admin');
-Route::resource('kategori', KategoriController::class)->middleware('role:Admin');
+// Route::resource('kategoripemasukan', KategoripemasukanController::class)->middleware('role:Admin');
 Route::resource('pengeluaran', PengeluaranController::class)->middleware('role:Admin');
 // Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -73,12 +75,20 @@ Route::resource('pengeluaran', PengeluaranController::class)->middleware('role:A
 Route::group(['middleware' => 'auth','Admin'], function() {
     Route::resource('pemasukan', PemasukanController::class, ['except' => 'pemasukan,index']);
     Route::resource('pengeluaran',PengeluaranController::class,['except' => 'pengeluaran,index']);
-    Route::resource('kategori',KategoriController::class,['except' => 'kategori,index']);
+    Route::resource('kategoripemasukan', KategoripemasukanController::class);
+    Route::resource('kategoripengeluaran', KategoripengeluaranController::class);
     Route::resource('saldo',SaldoController::class,['except' => 'saldo,index']);
+
+
+
+
+
   });
 
   Route::group(['middleware' => 'auth','User'], function() {
     Route::resource('pemasukan', PemasukanController::class, ['except' => 'pemasukan,index']);
     Route::resource('pengeluaran',PengeluaranController::class,['except' => 'pengeluaran,index']);
+    Route::resource('kategoripemasukan', KategoripemasukanController::class,['except' => 'kategoripemasukan,index']);
+    Route::resource('kategoripengeluaran', KategoripengeluaranController::class,['except' => 'kategoripengeluaran,index']);
     Route::resource('saldo',SaldoController::class,['except' => 'saldo,index']);
   });

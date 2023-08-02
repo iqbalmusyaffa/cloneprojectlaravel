@@ -29,10 +29,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $counter = 1;
+                            @endphp
+
                                 @foreach ($pemasukan as $pemasukans)
                                 <tr>
-                                    <td>{{ $pemasukans->id }}</td>
-                                    <td>{{ $pemasukans->kategori->nama_kategori }}</td>
+                                    <td>{{ $counter }}</td>
+                                    <td>{{ $pemasukans->kategorimasuk->nama_kategori }}</td>
                                     <td>{{ $pemasukans->nominal	}}</td>
                                     <td>{{ $pemasukans->deskripsi }}</td>
                                     <td>{{ $pemasukans->tanggal_pemasukan }}</td>
@@ -51,6 +55,9 @@
                                     </div>
                                     </td>
                                 </tr>
+                                @php
+                                $counter++;
+                            @endphp
                                 @endforeach
                                 </tbody>
                             </table>

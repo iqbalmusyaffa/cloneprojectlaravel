@@ -14,9 +14,6 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> {{ Auth::user()->name }}</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li><hr class="dropdown-divider" /></li>
                 <li> <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
@@ -43,19 +40,19 @@
                     </a>
                     <div class="sb-sidenav-menu-heading text-white">Manajemen</div>
                     @if(auth()->check() && auth()->user()->role === 'Admin')
-                    <a class="nav-link active collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link active collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Manajemen User
+                        Manajemen Kategori
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Tambah User</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Show User</a>
+                            <a class="nav-link @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('kategoripemasukan.index') }}">Kategori Pemasukan</a>
+                            <a class="nav-link @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('kategoripengeluaran.index') }}">Kategori Pengeluaran</a>
                         </nav>
                     </div>
-                    @elseif(auth()->check() && auth()->user()->role === 'User')
                     @endif
+                    @if(auth()->check() && auth()->user()->role === 'User')
                     <a class="nav-link active collapsed @if($currentRouteName == 'pemasukan.index') active @endif" href="{{ route('pemasukan.index') }}"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Manajemen pemasukan
@@ -64,17 +61,6 @@
                     <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('pengeluaran.index') }}" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Manajemen pengeluaran
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <a class="nav-link active collapsed @if($currentRouteName == 'saldo.index') active @endif" href="{{ route('saldo.index') }}" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Manajemen Saldo
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    @if(auth()->check() && auth()->user()->role === 'Admin')
-                    <a class="nav-link active collapsed @if($currentRouteName == 'kategori.index') active @endif" href="{{ route('kategori.index') }}"  aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Manajemen Kategori
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     @endif

@@ -49,5 +49,12 @@ class User extends Authenticatable
     public function pengeluaran(){
         return $this->hasMany(Pengeluaran::class);
     }
+    public function saldomasuk(){
+        return $this->hasMany(Saldomasuk::class);
+    }
+    public function saldokeluar(){
+        return $this->hasMany(Saldokeluar::class);
+    }
+
 
 }

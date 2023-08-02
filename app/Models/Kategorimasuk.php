@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kategori extends Model
+class Kategorimasuk extends Model
 {
-    use HasFactory;
-    public function pemasukan()
+       public function pemasukan()
     {
         return $this->hasMany(Pemasukan::class);
+    }
+    public function saldokeluar()
+    {
+        return $this->belongsTo(Saldokeluar::class, 'user_id', 'id');
     }
 }

@@ -15,14 +15,14 @@ class PemasukanSeeder extends Seeder
     {
         DB::table('pemasukans')->insert([
             [
-                'kategori_id' => 1,
+                'kategorimasuk_id' => 1,
                 'nominal' => '100000',
                 'deskripsi' => 'ini bayar kos',
                 'tanggal_pemasukan' => '2023-07-27 20:36:00',
                 'user_id' => 2
             ],
             [
-                'kategori_id' => 2,
+                'kategorimasuk_id' => 2,
                 'nominal' => '200000',
                 'deskripsi' => 'ini bayar listirk',
                 'tanggal_pemasukan' => '2023-07-27 21:36:00',

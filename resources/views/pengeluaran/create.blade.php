@@ -33,7 +33,7 @@
                             <div class="col-md-12 mb-3">
                                 <label for="kategori" class="form-label">kategori</label>
                                 <select name="kategori_id" id="kategori_id" class="form-select">
-                                    @foreach ($pengeluaran as $kategori)
+                                    @foreach ($pengeluarans as $kategori)
                                     <option value="{{ $kategori->id }}" {{ $kategori->id == $kategori->id ?'selected' : '' }}>{{ $kategori->kode_kategori.' -'.$kategori->nama_kategori	}}</option>
                                     @endforeach
                                 </select>

@@ -24,6 +24,11 @@ window.addEventListener('DOMContentLoaded', event => {
           format: 'dd/MM/yyyy HH:mm',
         }
       });
+      const myModal = document.getElementById('myModal')
+      const myInput = document.getElementById('myInput')
 
+      myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+      })
 
 });

@@ -32,8 +32,8 @@
     </nav>
 
     <div class="container-sm mt-5">
-        <form action="{{ route('kategori.update',['kategori' => $kategori->id]) }}" method="POST"  method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="kategori_id" id="kategori_id" value="{{ $kategori->kategori_id }}">
+        <<form action="{{ route('kategoripengeluaran.update',['kategoripengeluaran' => $kategorikeluars->id]) }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="kategori_id" id="kategori_id" value="{{ $kategorikeluars->kategori_id }}">
     @method('put')
         @csrf
     <div class="row justify-content-center">
@@ -46,21 +46,21 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="namakategori" class="form-label">Nama Kategori</label>
-                    <input class="form-control @error('namakategori') is-invalid @enderror" type="text" name="namakategori" id="namakategori" value="{{ $errors->any() ? old('namakategori') : $kategori->nama_kategori }}" placeholder="Enter nama kategori">
+                    <input class="form-control @error('namakategori') is-invalid @enderror" type="text" name="namakategori" id="namakategori" value="{{ $errors->any() ? old('namakategori') : $kategorikeluars->nama_kategori }}" placeholder="Enter nama kategori">
                     @error('namakategori')
                 <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
             </div>
                 <div class="col-md-6 mb-3">
                     <label for="kodekategori" class="form-label">Kode kategori</label>
-                    <input class="form-control @error('kodekategori') is-invalid @enderror" type="text" name="kodekategori" id="kodekategori" value="{{ $errors->any() ? old('kodekategori') : $kategori->kode_kategori }}" placeholder="Enter Kode kategori">
+                    <input class="form-control @error('kodekategori') is-invalid @enderror" type="text" name="kodekategori" id="kodekategori" value="{{ $errors->any() ? old('kodekategori') : $kategorikeluars->kode_kategori }}" placeholder="Enter Kode kategori">
                     @error('kodekategori')
                 <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="floatingTextarea">Deskripsi</label>
-                    <textarea class="form-control @error('email') is-invalid @enderror" placeholder="Deskripsi" name="deskripsi" id="deskripsi" value="{{ $errors->any() ? old('email') : $kategori->deskripsi }}"></textarea>
+                    <textarea class="form-control @error('email') is-invalid @enderror" placeholder="Deskripsi" name="deskripsi" id="deskripsi" >{{ $errors->any() ? old('email') : $kategorikeluars->deskripsi }}</textarea>
                     @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -69,7 +69,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-6 d-grid">
-                    <a href="{{ route('kategori.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                    <a href="{{ route('kategoripengeluaran.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                 </div>
                 <div class="col-md-6 d-grid">
                     <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
