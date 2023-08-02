@@ -2,10 +2,10 @@
     $currentRouteName = Route::currentRouteName();
 @endphp
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #CB3B43;">
+    <nav class="sb-topnav navbar navbar-expand navbar-light">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="{{ route('home') }}">
-        <img class="img-fluid" src="{{ Vite::asset('resources/image/diaryuangpuih.png') }}" a>
+        <img class="img-fluid" src="{{ Vite::asset('resources/image/diaryuangpuih baru.png') }}" a>
     </a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-justify" style="font-size: 30px;"></i></i></button>

@@ -75,7 +75,14 @@ class PemasukanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pageTitle = 'Detail Pemasukan';
+        $pemasukans = Kategori::all();
+
+        // return view('pemasukan.create', compact('pageTitle','pemasukan'));
+        return view ('pemasukan.show',[
+            'pageTitle'=>$pageTitle,
+            'pemasukans'=>$pemasukans
+        ]);
     }
 
     /**
@@ -83,7 +90,14 @@ class PemasukanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Edit Pengeluaran';
+        $pemasukans = Kategori::all();
+
+        // return view('pemasukan.create', compact('pageTitle','pemasukan'));
+        return view ('pemasukan.edit',[
+            'pageTitle'=>$pageTitle,
+            'pemasukans'=>$pemasukans
+        ]);
     }
 
     /**

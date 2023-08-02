@@ -25,8 +25,8 @@
                         @endif
 
                         <div class="mb-3 text-center">
-                            <i class="bi bi-graph-up fs-1"></i>
-                            <h4>Create Pemasukan</h4>
+                            <i class="bi bi-pencil-square fs-1"></i>
+                            <h4>Edit Pemasukan</h4>
                         </div>
                         <hr>
                         <div class="row">

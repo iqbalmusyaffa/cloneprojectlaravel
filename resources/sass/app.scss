@@ -10,29 +10,20 @@
 @import "datatables.net-buttons-bs5/css/buttons.bootstrap5.css";
 
 
-// Define a variable for the Abhaya Libre font
-$font-abhaya-libre: 'Abhaya Libre', sans-serif;
+// File: style.scss (Ubah nama file sesuai keinginan Anda)
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-// Define a variable for the font weight
-$font-weight-extra-bold: 800;
-
-// Apply the styles using SCSS syntax
-h1 {
-  font-family: $font-abhaya-libre;
-  font-weight: $font-weight-extra-bold;
-}
-
-
-$font-kurale: 'Kurale', sans-serif;
-
-// Apply the styles using SCSS syntax
+// Gunakan Montserrat sebagai font untuk kelas custom-font
 .custom-font {
-    font-family: 'Kurale', sans-serif;
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 2px solid #000; /* Change color or style as needed */
+  font-family: 'Montserrat', sans-serif;
 }
+
+// Tambahkan kelas lainnya atau aturan CSS tambahan di bawah ini
+
+
+
+// Apply the styles using SCSS syntax
+
 
 // Define your SCSS variables (optional)
 $btn-font-size: 14px;
@@ -63,8 +54,23 @@ $btn-padding-horizontal: 28px;
   }
 
   h1.mt-4 {
-    font-family: "Kurale", sans-serif; /* Ganti dengan jenis font yang diinginkan */
-    font-size: 28px;
+    font-family: 'Montserrat', sans-serif; /* Ganti dengan jenis font yang diinginkan */
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    line-height: normal;
+    font-style: normal;
+  }
+
+
+  .custom-paragraph {
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
 
