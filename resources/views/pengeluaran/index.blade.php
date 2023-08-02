@@ -44,19 +44,13 @@
                                     <td>{{ $pengeluarans->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
-<<<<<<< HEAD
                                                 <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
                                                     me-2"><i class="bi-pencil-square"></i></a>
                                             </div>
                                             <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
                                             <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
                                             </form>
-=======
-                                        <a href="{{ route('pengeluaran.show', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm me-2">
-                                            <i class="bi bi-card-text" method="POST"></i></a>
-                                            <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm me-2">
-                                                <i class="bi-pencil-square"></i></a>
->>>>>>> 49a62a15344debe9cf6cfc979ce019fcc8a29536
+
                                         </div>
                                         <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
                                         <button type="submit" class="btn btn-outline-danger btn-sm me-2"><i class="bi-trash"></i></button>
@@ -82,10 +76,10 @@
         </div>
     </div>
     @endsection
-        @push('scripts')
+        {{-- @push('scripts')
         <script type="module">
             $(document).ready(function() {
                 $('#employeeTable').DataTable();
             });
         </script>
-    @endpush
+    @endpush --}}

@@ -11,11 +11,8 @@
                     <br>
                     <div class="col-lg-3 col-xl-2">
                         <div class="d-grid gap-2">
-<<<<<<< HEAD
-                            <a href="{{ route('pemasukan.create') }}" class="btn btn-primary" style="background-color: #58B079">Create Pemasukan</a>
-=======
+
                             <a href="{{ route('pemasukan.create') }}" class="btn btn-primary rounded-pill" style="background-color: #58B079" >Tambah Pemasukan</a>
->>>>>>> 49a62a15344debe9cf6cfc979ce019fcc8a29536
                         </div>
                     </div>
                     <br>
@@ -39,7 +36,7 @@
                                 @foreach ($pemasukans as $pemasukan)
                                 <tr>
                                     <td>{{ $counter }}</td>
-<<<<<<< HEAD
+
                                     <td>{{ $pemasukan->kategorimasuk->nama_kategori }}</td>
                                     <td>{{ $pemasukan->nominal	}}</td>
                                     <td>{{ $pemasukan->deskripsi }}</td>
@@ -52,21 +49,7 @@
                                             </div>
                                             <form action="{{ route('pemasukan.destroy',['pemasukan' =>$pemasukan->id]) }}" method="POST"> @csrf @method('delete')
                                             <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
-=======
-                                    <td>{{ $pemasukans->kategorimasuk->nama_kategori }}</td>
-                                    <td>{{ $pemasukans->nominal	}}</td>
-                                    <td>{{ $pemasukans->deskripsi }}</td>
-                                    <td>{{ $pemasukans->tanggal_pemasukan }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('pemasukan.show', ['pemasukan'=>$pemasukans->id]) }}" class="btn btn-outline-dark btn-sm
-                                                me-2"><i class="bi bi-card-text" method="POST"></i></a>
-                                                <a href="{{ route('pemasukan.edit', ['pemasukan'=>$pemasukans->id]) }}" class="btn btn-outline-dark btn-sm
-                                                    me-2"><i class="bi-pencil-square"></i></a>
-                                            </div>
-                                            <form action="{{ route('pemasukan.destroy',['pemasukan' =>$pemasukans->id]) }}" method="POST"> @csrf @method('delete')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm me-2"><i class="bi-trash"></i></button>
->>>>>>> 49a62a15344debe9cf6cfc979ce019fcc8a29536
+
                                             </form>
                                         </div>
                                     </div>
@@ -90,10 +73,10 @@
         </div>
     </div>
     @endsection
-        @push('scripts')
+        {{-- @push('scripts')
         <script type="module">
             $(document).ready(function() {
                 $('#employeeTable').DataTable();
             });
         </script>
-    @endpush
+    @endpush --}}

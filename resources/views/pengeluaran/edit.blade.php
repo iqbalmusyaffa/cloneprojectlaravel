@@ -32,7 +32,7 @@
     </nav>
     <div class="container-sm mt-5">
         <form action="{{ route('pengeluaran.update',['pengeluaran' => $pengeluarans->id??'None']) }}" method="POST">
-            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluarans->pengeluaran_id }}">
+            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluarans->pengeluaran_id??'None' }}">
             @method('put')
             @csrf
             <div class="row justify-content-center">
@@ -71,7 +71,7 @@
                             <label for="floatingTextarea">Deskripsi</label>
                             <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="deskripsi">{{ $pengeluarans->deskripsi??'None' }}</textarea>
                         </div>
-                        <input type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran" value="{{ $pengeluarans->tanggal_pemasukan }}">
+                        <input type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran" value="{{ $pengeluarans->tanggal_pemasukan??'None' }}">
 
                     </div>
                     <hr>
