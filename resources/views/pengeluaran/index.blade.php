@@ -15,6 +15,19 @@
                             <a href="{{ route('pengeluaran.create') }}" class="btn btn-success">Create Pengeluaran</a>
                         </div>
                     </div>
+                    <div class="row mb-0">
+                        <div class="col-lg-9 col-xl-6">
+                        </div>
+                        <div class="col-lg-3 col-xl-6">
+                            <ul class="list-inline mb-0 float-end">
+                                <li class="list-inline-item">
+                                    <a href="{{ route('pengeluaran.exportPdf') }}" class="btn btn-outline-danger">
+                                        <i class="bi bi-download me-1"></i> to PDF
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <br>
                     </div>
                     <div class="table-responsive border p-3 rounded-3" style="background-color: #FDDDCB">
@@ -23,11 +36,11 @@
                                 <tr class="text-center">
                                     <th>No</th>
                                     <th>Nama Kategori</th>
-                                    <th>nominal</th>
-                                    <th>deskripsi</th>
-                                    <th>tgl pemasukan</th>
-                                    <th>username</th>
-                                    <th>Action</th>
+                                    <th>Nominal</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal pemasukan</th>
+                                    <th>Username</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -11,6 +11,8 @@ use App\Models\Saldomasuk;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+
 
 class PemasukanController extends Controller
 {
@@ -178,4 +180,14 @@ class PemasukanController extends Controller
         return redirect()->route('pemasukan.index');
 
     }
+
+    public function exportPdf1()
+    {
+        $pemasukan = Pemasukan::all();
+
+        $pdf = PDF::loadView('pemasukan.export_pdf', compact('pemasukan'));
+
+        return $pdf->download('pemasukan.pdf');
+    }
+
 }
