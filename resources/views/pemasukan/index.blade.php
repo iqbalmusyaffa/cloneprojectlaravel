@@ -54,7 +54,6 @@
                                     <td>{{ $pemasukan->nominal	}}</td>
                                     <td>{{ $pemasukan->deskripsi }}</td>
                                     <td>{{ $pemasukan->tanggal_pemasukan }}</td>
-                                    <td>{{ $pemasukan->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
                                                 <a href="{{ route('pemasukan.edit', ['pemasukan'=>$pemasukan->id]) }}" class="btn btn-outline-dark btn-sm

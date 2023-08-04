@@ -54,7 +54,6 @@
                                     <td>{{ $pengeluarans->nominal	}}</td>
                                     <td>{{ $pengeluarans->deskripsi }}</td>
                                     <td>{{ $pengeluarans->tanggal_pengeluaran }}</td>
-                                    <td>{{ $pengeluarans->user->name }}</td>
                                     <td>
                                         <div class="d-flex">
                                                 <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
