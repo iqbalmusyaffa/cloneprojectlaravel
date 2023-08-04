@@ -73,17 +73,19 @@
 
                 <img class="img-fluid" src="{{ Vite::asset('resources/images/Diary Uang.png') }}" alt="main logo" width="250" height="50">
                 <hr>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                 <div class="form-outline form-white mb-4">
                   <label class="form-label" for="typeEmailX">Email</label>
-                  <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                  <input type="email" name="email" id="email" class="form-control form-control-lg" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
                   <label class="form-label" for="typePasswordX">Password</label>
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                  <input type="password" name="password" id="password" class="form-control form-control-lg" />
                 </div>
 
-                <button class="btn btn-danger btn-lg px-5" href="{{ route('home') }}" type="submit">Login</button>
+                <button class="btn btn-danger btn-lg px-5"  type="submit">{{ __('Login') }}</button>
               </div>
             </div>
           </div>

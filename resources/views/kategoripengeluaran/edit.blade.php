@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="floatingTextarea">Deskripsi</label>
-                    <textarea class="form-control @error('email') is-invalid @enderror" placeholder="Deskripsi" name="deskripsi" id="deskripsi" >{{ $errors->any() ? old('email') : $kategorikeluars->deskripsi }}</textarea>
+                    <textarea class="form-control @error('email') is-invalid @enderror" placeholder="Deskripsi" name="deskripsi" id="deskripsi" >{{ $errors->any() ? old('deskripsi') : $kategorikeluars->deskripsi }}</textarea>
                     @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

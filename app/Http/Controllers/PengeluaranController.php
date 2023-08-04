@@ -111,15 +111,12 @@ class PengeluaranController extends Controller
      */
     public function edit(string $id)
     {
-        $pageTitle = 'edit Kategori';
-        $kategorikeluars = Kategorikeluar::all();
+        $pageTitle = 'Create Kategori';
+        $pengeluaran = Pengeluaran::find($id);
+        $kategorikeluar = Kategorikeluar::all();
         $pengeluarans = Saldokeluar::find($id);
 
-        return view ('pengeluaran.edit',[
-            'pageTitle'=>$pageTitle,
-            'kategorikeluars'=>$kategorikeluars,
-            'pengeluarans'=>$pengeluarans
-        ]);
+        return view('pengeluaran.edit', compact('pageTitle','pengeluaran','kategorikeluar','pengeluarans'));
     }
 
     /**
@@ -127,13 +124,16 @@ class PengeluaranController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $messages = [
+         // var_dump($request->kategori_id);die();
+         $messages = [
             'required' => ':Attribute harus diisi.',
             'email' => 'Isi :attribute dengan format yang benar',
-            'numeric' => 'Isi :attribute dengan angka'
+            'numeric' => 'Isi :attribute dengan angka',
+            'regex' => 'Isi :attribute dengan huruf besar saja',
         ];
 
         $validator = Validator::make($request->all(), [
+             'kategori_id' =>'required',
             'nominal' => 'required',
             'deskripsi' => 'required'
         ], $messages);
@@ -142,30 +142,25 @@ class PengeluaranController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // ELOQUENT
-        $pengeluarans = Pengeluaran::find($id);
-        $saldos = Saldokeluar::find($id);
-        $pengeluarans->kategorimasuk_id = $request->kategori_id;
-        $pengeluarans->nominal = $request->nominal;
-        $pengeluarans->deskripsi = $request->deskripsi;
-        $pengeluarans->tanggal_pemasukan = $request->tanggal_pemasukan;
-        $pengeluarans->user_id=Auth::id();
-        $saldos->user_id=Auth::id();
-        $pengeluarans->save();
-
-        $pemasukanId = $pengeluarans->id;
-        $saldomasuk = Saldokeluar::find($id);
-        $saldomasuk->user_id = Auth::id();
-        $saldomasuk->totalmasuk= $request->nominal;
-        $saldomasuk->pemasukan_id = $pemasukanId;
-        // $saldomasuk = Saldomasuk::where('pemasukan_id',$saldomasuk)
-        // ->get; // Jumlah saldo bertambah sesuai nominal pemasukan
-
-        $saldomasuk->save();
+           // Dapatkan Data Pemasukan dan Saldo Masuk yang akan diupdate
+    $pengeluaran = Pengeluaran::find($id);
+    $saldokeluar = Saldokeluar::where('pengeluaran_id', $id)->first();
 
 
-        return redirect()->route('pengeluaran.index',[
-        ]);
+    // Update Data Pemasukan
+    $pengeluaran->kategorikeluar_id = $request->kategori_id;
+    $pengeluaran->nominal = $request->nominal;
+    $pengeluaran->deskripsi = $request->deskripsi;
+    $pengeluaran->tanggal_pengeluaran = $request->tanggal_pengeluaran;
+    $pengeluaran->user_id = Auth::id();
+    $pengeluaran->save();
+
+    // Update Data Saldo Masuk
+    $saldokeluar->user_id = Auth::id();
+    $saldokeluar->totalkeluar = $request->nominal;
+    $saldokeluar->save();
+
+        return redirect()->route('pengeluaran.index')->with('success', 'Data updated successfully.');
     }
 
     /**

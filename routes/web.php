@@ -29,10 +29,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 // Route::get('dashboardsaldo', SaldoController::class)->name('dashboardsaldo');
-Route::resource('saldo', SaldoController::class)->middleware('role:Admin');
-Route::resource('pemasukan', PemasukanController::class)->middleware('role:Admin');
+// Route::resource('saldo', SaldoController::class)->middleware('role:Admin');
+// Route::resource('pemasukan', PemasukanController::class)->middleware('role:Admin');
 // Route::resource('kategoripemasukan', KategoripemasukanController::class)->middleware('role:Admin');
-Route::resource('pengeluaran', PengeluaranController::class)->middleware('role:Admin');
+// Route::resource('pengeluaran', PengeluaranController::class)->middleware('role:Admin');
 
 // Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth','Admin'], function() {
 
 
   });
+
 
   Route::group(['middleware' => 'auth','User'], function() {
     Route::resource('pemasukan', PemasukanController::class, ['except' => 'pemasukan,index']);

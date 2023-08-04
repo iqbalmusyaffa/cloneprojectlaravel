@@ -15,10 +15,10 @@ class Pemasukan extends Model
     }
     public function kategorimasuk()
     {
-        return $this->belongsTo(Kategorimasuk::class);
+        return $this->belongsTo(Kategorimasuk::class)->withDefault();
     }
     public function pemasukan(){
-        return $this->hasMany(Pemasukan::class, 'kategorimasuks_id', 'id');
+        return $this->belongsTo(Pemasukan::class, 'kategorimasuk_id', 'id');
     }
     public function saldomasuk()
     {

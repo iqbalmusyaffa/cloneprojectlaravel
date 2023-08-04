@@ -31,8 +31,8 @@
         </ul>
     </nav>
     <div class="container-sm mt-5">
-        <form action="{{ route('pengeluaran.update',['pengeluaran' => $pengeluarans->id??'None']) }}" method="POST">
-            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluarans->pengeluaran_id??'None' }}">
+        <form action="{{ route('pengeluaran.update',['pengeluaran' => $pengeluaran->id]) }}" method="POST">
+            <input type="hidden" name="pengeluaran_id" id="pengeluaran_id" value="{{ $pengeluaran->pemasukan_id }}">
             @method('put')
             @csrf
             <div class="row justify-content-center">
@@ -49,30 +49,42 @@
 
                     <div class="mb-3 text-center">
                         <i class="bi-person-circle fs-1"></i>
-                        <h4>Edit Data pengeluaran</h4>
+                        <h4>Edit Pemasukan</h4>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="kategori" class="form-label">kategori</label>
+                            <label for="kategori" class="form-label">Kategori</label>
                             <select name="kategori_id" id="kategori_id" class="form-select">
-                            @foreach ($kategorikeluars as $tes)
-                            <option value="{{ $tes->id }}" {{ $tes->kategori_id == $tes->id ? 'selected' : '' }}>
-                                {{ $tes->kode_kategori . ' - ' . $tes->nama_kategori }}
-                            </option>
-                        </select>
-                        @endforeach
+                                @foreach ($kategorikeluar as $kategori_id)
+                                <option value="{{ $kategori_id->id }}" {{$pengeluaran->kategorikeluar_id == $kategori_id->id ?'selected' : '' }}>{{ $kategori_id->kode_kategori.' -'.$kategori_id->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_id')
+                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nominal" class="form-label">Nominal</label>
+                            <input class="form-control @error('nominal') is-invalid @enderror"  type="number" name="nominal" id="nominal" value="{{ $errors->any() ? old('nominal') : $pengeluaran->nominal }}" placeholder="Enter Nominal">
+                            @error('nominal')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="floatingTextarea" class="form-label">Deskripsi</label>
+                            <input class="form-control @error('deskripsi') is-invalid @enderror" type="text" name="deskripsi" id="deskripsi" value="{{ $errors->any() ? old('deskripsi') :$pengeluaran->deskripsi }}" placeholder="Enter nama deskripsi">
+                            @error('deskripsi')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="nominal" class="form-label">nominal</label>
-                            <input class="form-control" type="number" name="nominal" id="nominal" value="{{ $errors->any() ? old('nominal') : $pengeluarans->nominal??'None' }}" placeholder="Enter Last Name">
+                            <label for="tanggal_pengeluaran" class="form-label">Tanggal Pemasukan</label>
+                            <input class="form-control @error('tanggal_pengeluaran') is-invalid @enderror" type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran" value="{{ $errors->any() ? old('tanggal_pengeluaran', date('Y-m-d\TH:i', strtotime($pengeluaran->tanggal_pengeluaran))) : date('Y-m-d\TH:i') }}" placeholder="Enter tanggal_pengeluaran">
+                            @error('tanggal_pengeluaran')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="floatingTextarea">Deskripsi</label>
-                            <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="deskripsi">{{ $pengeluarans->deskripsi??'None' }}</textarea>
-                        </div>
-                        <input type="datetime-local" name="tanggal_pengeluaran" id="tanggal_pengeluaran" value="{{ $pengeluarans->tanggal_pemasukan??'None' }}">
-
                     </div>
                     <hr>
                     <div class="row">
@@ -88,6 +100,7 @@
         </form>
     </div>
 
+            </div>
         @vite('resources/js/app.js')
         @push('scripts')
         <script type="module">

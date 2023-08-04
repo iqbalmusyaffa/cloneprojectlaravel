@@ -13,7 +13,7 @@ class Kategorimasuk extends Model
     }
     public function kategorimasuk()
     {
-        return $this->hasMany(Kategorimasuk::class);
+        return $this->hasMany(Kategorimasuk::class)->withDefault();
     }
     public function saldokeluar()
     {

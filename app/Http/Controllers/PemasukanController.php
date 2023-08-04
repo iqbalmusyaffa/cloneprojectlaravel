@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use PDF;
 
 
+
 class PemasukanController extends Controller
 {
     /**
@@ -97,7 +98,10 @@ class PemasukanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pageTitle = 'Create Kategori';
+        $pemasukan= Pemasukan::find($id);
+
+        return view('pemasukan.index', compact('pageTitle','pemasukan'));
     }
 
     /**
@@ -106,14 +110,11 @@ class PemasukanController extends Controller
     public function edit(string $id)
     {
         $pageTitle = 'Create Kategori';
-        $kategorimasuks = Kategorimasuk::all();
+        $pemasukan = Pemasukan::find($id);
+        $kategorimasuk = Kategorimasuk::all();
         $pemasukans = Saldomasuk::find($id);
 
-        return view ('pemasukan.edit',[
-            'pageTitle'=>$pageTitle,
-            'kategorimasuks'=>$kategorimasuks,
-            'pemasukans'=>$pemasukans
-        ]);
+        return view('pemasukan.edit', compact('pageTitle','pemasukan','kategorimasuk','pemasukans'));
     }
 
     /**
@@ -121,13 +122,16 @@ class PemasukanController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // var_dump($request->kategori_id);die();
         $messages = [
             'required' => ':Attribute harus diisi.',
             'email' => 'Isi :attribute dengan format yang benar',
-            'numeric' => 'Isi :attribute dengan angka'
+            'numeric' => 'Isi :attribute dengan angka',
+            'regex' => 'Isi :attribute dengan huruf besar saja',
         ];
 
         $validator = Validator::make($request->all(), [
+             'kategori_id' =>'required',
             'nominal' => 'required',
             'deskripsi' => 'required'
         ], $messages);
@@ -136,30 +140,26 @@ class PemasukanController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // ELOQUENT
-        $pemasukans  = Pemasukan::find($id);
-        $saldos = Saldomasuk::find($id);
-        $pemasukans ->kategorimasuk_id = $request->kategori_id;
-        $pemasukans ->nominal = $request->nominal;
-        $pemasukans ->deskripsi = $request->deskripsi;
-        $pemasukans ->tanggal_pemasukan = $request->tanggal_pemasukan;
-        $pemasukans->user_id=Auth::id();
-        $saldos->user_id=Auth::id();
-        $pemasukans ->save();
-
-        $pemasukanId =  $pemasukans->id;
-        $saldomasuk = Saldomasuk::find($id);
-        $saldomasuk->user_id = Auth::id();
-        $saldomasuk->totalmasuk= $request->nominal;
-        $saldomasuk->pemasukan_id = $pemasukanId;
-        // $saldomasuk = Saldomasuk::where('pemasukan_id',$saldomasuk)
-        // ->get; // Jumlah saldo bertambah sesuai nominal pemasukan
-
-        $saldomasuk->save();
+           // Dapatkan Data Pemasukan dan Saldo Masuk yang akan diupdate
+    $pemasukan = Pemasukan::find($id);
+    $saldomasuk = Saldomasuk::where('pemasukan_id', $id)->first();
 
 
-        return redirect()->route('pemasukan.index',[
-        ]);
+    // Update Data Pemasukan
+    $pemasukan->kategorimasuk_id = $request->kategori_id;
+    $pemasukan->nominal = $request->nominal;
+    $pemasukan->deskripsi = $request->deskripsi;
+    $pemasukan->tanggal_pemasukan = $request->tanggal_pemasukan;
+    $pemasukan->user_id = Auth::id();
+    $pemasukan->save();
+
+    // Update Data Saldo Masuk
+    $saldomasuk->user_id = Auth::id();
+    $saldomasuk->totalmasuk = $request->nominal;
+    $saldomasuk->save();
+
+        return redirect()->route('pemasukan.index')->with('success', 'Data updated successfully.');
+
     }
 
     /**

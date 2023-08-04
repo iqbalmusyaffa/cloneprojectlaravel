@@ -120,6 +120,8 @@ class KategoripemasukanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Kategorimasuk::find($id)->delete();
+
+        return redirect()->route('kategoripemasukan.index');
     }
 }

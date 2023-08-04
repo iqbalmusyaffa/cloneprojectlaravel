@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pemasukans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kategorimasuk_id');
-            $table->foreign('kategorimasuk_id')->references('id')->on('kategorimasuks')->onDelete('cascade');
+            $table->foreign('kategorimasuk_id')->references('id')->on('kategorimasuks')->onDelete('cascade')->nullable();
             $table->integer('nominal');
             $table->text('deskripsi');
             $table->dateTime('tanggal_pemasukan');

@@ -31,7 +31,7 @@
                     <br>
                     </div>
                     <div class="table-responsive border p-3 rounded-3" style="background-color: #FDDDCB">
-                        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
+                        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="datatablesSimple">
                             <thead>
                                 <tr class="text-center">
                                     <th>No</th>
@@ -60,11 +60,6 @@
                                                 <a href="{{ route('pengeluaran.edit', ['pengeluaran'=>$pengeluarans->id]) }}" class="btn btn-outline-dark btn-sm
                                                     me-2"><i class="bi-pencil-square"></i></a>
                                             </div>
-                                            <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
-                                            <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
-                                            </form>
-
-                                        </div>
                                         <form action="{{ route('pengeluaran.destroy',['pengeluaran' =>$pengeluarans->id]) }}" method="POST"> @csrf @method('delete')
                                         <button type="submit" class="btn btn-outline-danger btn-sm me-2"><i class="bi-trash"></i></button>
                                         </form>
